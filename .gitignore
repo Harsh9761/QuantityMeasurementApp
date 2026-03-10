@@ -1,1 +1,7 @@
 /target/
+README.md
+.mvn/
+.settings/
+.classpath
+.project
+.gitignore
