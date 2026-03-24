@@ -2,6 +2,7 @@ package com.apps.quantitymeasurement.service;
 
 import org.springframework.stereotype.Service;
 
+import com.apps.quantitymeasurement.dto.QuantityDTO;
 import com.apps.quantitymeasurement.dto.QuantityInputDTO;
 import com.apps.quantitymeasurement.entity.QuantityMeasurementEntity;
 import com.apps.quantitymeasurement.exception.ArithmeticNotSupportedException;
@@ -49,8 +50,8 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
 
         QuantityMeasurementEntity entity = new QuantityMeasurementEntity();
 
-        var q1 = input.getThisQuantityDTO();
-        var q2 = input.getThatQuantityDTO();
+        QuantityDTO q1 = input.getThisQuantityDTO();
+        QuantityDTO q2 = input.getThatQuantityDTO();
         
         if (!q1.getMeasurementType().equalsIgnoreCase(q2.getMeasurementType())) {
             throw new MeasurementMismatchException("Measurement types must be same");
@@ -78,8 +79,8 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
 
         QuantityMeasurementEntity entity = new QuantityMeasurementEntity();
 
-        var from = input.getThisQuantityDTO();
-        var to = input.getThatQuantityDTO(); // target unit
+        QuantityDTO from = input.getThisQuantityDTO();
+        QuantityDTO to = input.getThatQuantityDTO(); // target unit
         
         if (to == null || to.getUnit() == null) {
             throw new InvalidUnitException("Target unit is required");
@@ -121,8 +122,8 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
 
         QuantityMeasurementEntity entity = new QuantityMeasurementEntity();
 
-        var q1 = input.getThisQuantityDTO();
-        var q2 = input.getThatQuantityDTO();
+        QuantityDTO q1 = input.getThisQuantityDTO();
+        QuantityDTO q2 = input.getThatQuantityDTO();
 
         IMeasurable unit1 = getUnit(q1.getMeasurementType(), q1.getUnit());
         IMeasurable unit2 = getUnit(q2.getMeasurementType(), q2.getUnit());
@@ -154,8 +155,8 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
 
         QuantityMeasurementEntity entity = new QuantityMeasurementEntity();
 
-        var q1 = input.getThisQuantityDTO();
-        var q2 = input.getThatQuantityDTO();
+        QuantityDTO q1 = input.getThisQuantityDTO();
+        QuantityDTO q2 = input.getThatQuantityDTO();
 
         IMeasurable unit1 = getUnit(q1.getMeasurementType(), q1.getUnit());
         IMeasurable unit2 = getUnit(q2.getMeasurementType(), q2.getUnit());
@@ -185,8 +186,8 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
 
         QuantityMeasurementEntity entity = new QuantityMeasurementEntity();
 
-        var q1 = input.getThisQuantityDTO();
-        var q2 = input.getThatQuantityDTO();
+        QuantityDTO q1 = input.getThisQuantityDTO();
+        QuantityDTO q2 = input.getThatQuantityDTO();
 
         IMeasurable unit1 = getUnit(q1.getMeasurementType(), q1.getUnit());
         IMeasurable unit2 = getUnit(q2.getMeasurementType(), q2.getUnit());
