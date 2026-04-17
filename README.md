@@ -60,18 +60,47 @@ Transforms the application into a Spring Boot REST API. Introduces `@RestControl
 ### UC18 — `feature/UC18-Google-Authnetication`
 Adds JWT-based authentication to the Spring Boot application. Introduces user registration and login endpoints, BCrypt password hashing, JWT token generation and validation, and a `JwtAuthFilter` that protects all API endpoints. All quantity endpoints require a valid Bearer token.
 
+### UC21 — `feature/UC21-Microservices-Architecture`
+Transforms the monolithic Spring Boot application into a **Microservices Architecture**.
+
+- Splits the system into independent services:
+  - **Auth Service** — handles user authentication & JWT
+  - **Quantity Service** — handles all measurement operations
+  - **API Gateway** — single entry point using Spring Cloud Gateway
+  - **Eureka Server** — service discovery for dynamic routing
+- Implements **service registration and discovery** using Eureka
+- Uses **API Gateway routing** instead of direct service calls
+- Integrates **JWT authentication filter at Gateway level**
+- Enables **loose coupling and scalability** across services
+- Each service runs independently and communicates via REST
+
+
+### UC22 — `feature/UC22-Deployment`
+Deploys the complete microservices system to a cloud platform.
+
+- Backend services deployed on **Render**
+- Each microservice hosted independently:
+  - Auth Service (Render)
+  - Quantity Service (Render)
+  - API Gateway (Render)
+- Configured **environment variables** for production setup
+- Replaced localhost URLs with deployed service URLs
+- Enabled **CORS configuration** for frontend-backend communication
+- Verified all APIs using deployed Swagger endpoints
+- Ensured JWT authentication works in production environment
+- Application is now **publicly accessible via deployed URLs**
+
 ---
 
 ```
-POST /auth/register       - Register a new user
-POST /auth/login          - Login and get JWT token
+POST /api/v1/users/register       - Register a new user
+POST /api/v1/users/login          - Login and get JWT token
 
 POST /api/v1/quantities/compare    - Compare two quantities
 POST /api/v1/quantities/convert    - Convert a quantity to another unit
 POST /api/v1/quantities/add        - Add two quantities
 POST /api/v1/quantities/subtract   - Subtract two quantities
 POST /api/v1/quantities/divide     - Divide two quantities
-GET  /api/v1/quantities/history    - Get all operation history
 GET  /api/v1/quantities/history/{operation} - Filter history by operation
 GET  /api/v1/quantities/count/{operation}   - Count operations by type
 ```
